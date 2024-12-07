@@ -1,5 +1,53 @@
 #!/usr/bin/env bash
 
+# Main menu function: displays menu options and handles user input
+main() {
+    while true; do
+        echo -e "Hello ${USER}!"
+        echo "------------------------------
+| Hyper Commander            |
+| 0: Exit                    |
+| 1: OS info                 |
+| 2: User info               |
+| 3: File and Dir operations |
+| 4: Find Executables        |
+------------------------------"
+
+        read -rp "> " input
+
+        case "$input" in
+        0)
+            echo -e "\nFarewell!\n"
+            exit 0
+            ;;
+        1)
+            echo -e "\n$(uname --operating-system --nodename)\n"
+            read -rp "Press Enter to continue..."
+            clear
+            ;;
+        2)
+            echo -e "\n$(whoami)\n"
+            read -rp "Press Enter to continue..."
+            clear
+            ;;
+        3)
+            list_files_and_dirs
+            ;;
+        4)
+            find_executable
+            ;;
+        *)
+            echo -e "\nInvalid option!\n"
+            read -rp "Press Enter to continue..."
+            clear
+            ;;
+        esac
+
+    done
+}
+
+# Lists files and directories in the current directory
+# Allows user to navigate up, select a file/directory, or return to main menu
 list_files_and_dirs() {
     clear
     echo -e "The list of files and directories: "
@@ -45,6 +93,8 @@ list_files_and_dirs() {
     done
 }
 
+# Displays options for a selected file (delete, rename, change permissions)
+# Handles user input for file operations
 file_options() {
     echo -e "---------------------------------------------------------------------
 | 0 Back | 1 Delete | 2 Rename | 3 Make writable | 4 Make read-only |
@@ -82,6 +132,7 @@ file_options() {
     esac
 }
 
+# Finds the location of a specified executable and allows user to run it with arguments
 find_executable () {
     echo "Enter an executable name: "
     read -rp "> " exec_name
@@ -99,49 +150,6 @@ find_executable () {
     fi
 }
 
-main() {
-    while true; do
-        echo -e "Hello ${USER}!"
-        echo "------------------------------
-| Hyper Commander            |
-| 0: Exit                    |
-| 1: OS info                 |
-| 2: User info               |
-| 3: File and Dir operations |
-| 4: Find Executables        |
-------------------------------"
-
-        read -rp "> " input
-
-        case "$input" in
-        0)
-            echo -e "\nFarewell!\n"
-            exit 0
-            ;;
-        1)
-            echo -e "\n$(uname --operating-system --nodename)\n"
-            read -rp "Press Enter to continue..."
-            clear
-            ;;
-        2)
-            echo -e "\n$(whoami)\n"
-            read -rp "Press Enter to continue..."
-            clear
-            ;;
-        3)
-            list_files_and_dirs
-            ;;
-        4)
-            find_executable
-            ;;
-        *)
-            echo -e "\nInvalid option!\n"
-            read -rp "Press Enter to continue..."
-            clear
-            ;;
-        esac
-
-    done
-}
+# Clear console output and call main function
 clear
 main
