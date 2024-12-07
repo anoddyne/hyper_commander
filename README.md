@@ -16,7 +16,7 @@ HyperCommander.sh is a Bash script designed to provide a simple and intuitive wa
 
 ## Usage
 
-To use HyperCommander.sh, simply save the script to a file (e.g., `hypercommander.sh`), make the file executable with 
+To use HyperCommander.sh, simply save the script to a file (e.g., `HyperCommander.sh`), make the file executable with 
 ```bash
 chmod +x HyperCommander.sh
 ```
